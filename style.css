@@ -23,6 +23,12 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: hidden;
+    width: 100vw;
+    touch-action: manipulation;
+}
+
 body {
     font-family: 'Outfit', sans-serif;
     background: linear-gradient(-45deg, var(--bg-color), var(--bg-color-mid), var(--bg-color-end), #231557);
@@ -36,6 +42,8 @@ body {
     padding: 2rem 1rem;
     position: relative;
     overflow-x: hidden;
+    overscroll-behavior-y: none;
+    width: 100%;
 }
 
 @keyframes gradientBG {
