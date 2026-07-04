@@ -1,0 +1,198 @@
+:root {
+    --bg-color: #0f0c29;
+    --bg-color-mid: #302b63;
+    --bg-color-end: #24243e;
+    --text-color: #ffffff;
+    --text-muted: #b3b3b3;
+    
+    /* Brand Colors */
+    --tiktok-color: #ff0050;
+    --tiktok-color-2: #00f2fe;
+    --youtube-color: #ff0000;
+    --whatsapp-color: #25D366;
+    
+    /* Neon Accents */
+    --neon-purple: #b026ff;
+    --neon-pink: #ff26b9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(135deg, var(--bg-color), var(--bg-color-mid), var(--bg-color-end));
+    background-attachment: fixed;
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Background animated glow effects */
+body::before, body::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    animation: float 10s infinite alternate;
+}
+
+body::before {
+    background: var(--neon-purple);
+    top: -50px;
+    left: -50px;
+    opacity: 0.3;
+}
+
+body::after {
+    background: var(--neon-pink);
+    bottom: -50px;
+    right: -50px;
+    opacity: 0.2;
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(30px, 50px); }
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 3rem 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.profile-section {
+    margin-bottom: 2.5rem;
+}
+
+.profile-image-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #1a1a2e;
+}
+
+.profile-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(to right, #fff, #e0e0e0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.profile-bio {
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.links-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.link-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem;
+    border-radius: 15px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1.1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.link-btn i {
+    position: absolute;
+    left: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.link-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: all 0.5s ease;
+}
+
+.link-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.link-btn:hover::before {
+    left: 100%;
+}
+
+/* Custom Hovers */
+.tiktok-btn:hover {
+    background: rgba(255, 0, 80, 0.1);
+    border-color: var(--tiktok-color);
+    box-shadow: 0 10px 20px rgba(255, 0, 80, 0.2), 0 0 15px var(--tiktok-color-2);
+}
+.tiktok-btn i { color: #fff; text-shadow: 2px 0 var(--tiktok-color), -2px 0 var(--tiktok-color-2); }
+
+.youtube-btn:hover {
+    background: rgba(255, 0, 0, 0.1);
+    border-color: var(--youtube-color);
+    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+}
+.youtube-btn i { color: var(--youtube-color); }
+
+.whatsapp-btn:hover {
+    background: rgba(37, 211, 102, 0.1);
+    border-color: var(--whatsapp-color);
+    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+}
+.whatsapp-btn i { color: var(--whatsapp-color); }
+
+
+footer {
+    margin-top: 3rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
