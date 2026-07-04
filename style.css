@@ -1,7 +1,7 @@
 :root {
-    --bg-color: #0f0c29;
-    --bg-color-mid: #302b63;
-    --bg-color-end: #24243e;
+    --bg-color: #0b0914;
+    --bg-color-mid: #1a153a;
+    --bg-color-end: #0f0c29;
     --text-color: #ffffff;
     --text-muted: #b3b3b3;
     
@@ -14,6 +14,7 @@
     /* Neon Accents */
     --neon-purple: #b026ff;
     --neon-pink: #ff26b9;
+    --neon-blue: #26d0ff;
 }
 
 * {
@@ -24,8 +25,9 @@
 
 body {
     font-family: 'Outfit', sans-serif;
-    background: linear-gradient(135deg, var(--bg-color), var(--bg-color-mid), var(--bg-color-end));
-    background-attachment: fixed;
+    background: linear-gradient(-45deg, var(--bg-color), var(--bg-color-mid), var(--bg-color-end), #231557);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
     color: var(--text-color);
     min-height: 100vh;
     display: flex;
@@ -36,49 +38,62 @@ body {
     overflow-x: hidden;
 }
 
-/* Background animated glow effects */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Floating animated orbs */
 body::before, body::after {
     content: '';
     position: absolute;
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     border-radius: 50%;
-    filter: blur(100px);
+    filter: blur(120px);
     z-index: -1;
-    animation: float 10s infinite alternate;
+    animation: floatOrb 12s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95) alternate;
 }
 
 body::before {
     background: var(--neon-purple);
-    top: -50px;
-    left: -50px;
-    opacity: 0.3;
+    top: -100px;
+    left: -100px;
+    opacity: 0.4;
 }
 
 body::after {
-    background: var(--neon-pink);
-    bottom: -50px;
-    right: -50px;
-    opacity: 0.2;
-    animation-delay: -5s;
+    background: var(--neon-blue);
+    bottom: -100px;
+    right: -100px;
+    opacity: 0.3;
+    animation-delay: -6s;
 }
 
-@keyframes float {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(30px, 50px); }
+@keyframes floatOrb {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(50px, 80px) scale(1.2); }
+    100% { transform: translate(-30px, 40px) scale(0.9); }
 }
 
 .container {
     width: 100%;
     max-width: 500px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 30px;
-    padding: 3rem 2rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 40px;
+    padding: 3.5rem 2rem;
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(255, 255, 255, 0.02);
     text-align: center;
+    animation: popIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes popIn {
+    0% { opacity: 0; transform: translateY(40px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .profile-section {
@@ -87,12 +102,26 @@ body::after {
 
 .profile-image-container {
     position: relative;
-    width: 120px;
-    height: 120px;
+    width: 140px;
+    height: 140px;
     margin: 0 auto 1.5rem;
     border-radius: 50%;
-    padding: 5px;
-    background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+    padding: 6px;
+    background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink), var(--neon-blue));
+    background-size: 200% 200%;
+    animation: rgbBorder 4s ease infinite, floatImage 6s ease-in-out infinite;
+    box-shadow: 0 0 30px rgba(176, 38, 255, 0.4);
+}
+
+@keyframes rgbBorder {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes floatImage {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 .profile-image {
@@ -100,99 +129,138 @@ body::after {
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    border: 3px solid #1a1a2e;
+    border: 4px solid #100c1f;
+    background-color: #100c1f;
 }
 
 .profile-name {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    background: linear-gradient(to right, #fff, #e0e0e0);
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.8rem;
+    background: linear-gradient(to right, #fff, #b3b3b3);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 .profile-bio {
-    font-size: 1rem;
-    color: var(--text-muted);
+    font-size: 1.05rem;
+    color: #e0e0e0;
     font-weight: 400;
+    line-height: 1.5;
+    animation: fadeIn 1.5s ease 0.5s both;
+    font-style: italic;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .links-section {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.2rem;
 }
 
 .link-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1.2rem;
-    border-radius: 15px;
+    padding: 1.3rem;
+    border-radius: 20px;
     text-decoration: none;
     color: var(--text-color);
     font-weight: 600;
-    font-size: 1.1rem;
-    background: rgba(255, 255, 255, 0.05);
+    font-size: 1.15rem;
+    background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
+    opacity: 0;
+    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Staggered entrance for buttons */
+.tiktok-btn { animation-delay: 0.6s; }
+.youtube-btn { animation-delay: 0.8s; }
+.whatsapp-btn { animation-delay: 1.0s; }
+
+@keyframes slideUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 .link-btn i {
     position: absolute;
-    left: 1.5rem;
-    font-size: 1.5rem;
+    left: 1.8rem;
+    font-size: 1.6rem;
+    transition: transform 0.4s ease;
 }
 
-.link-btn::before {
+.link-btn span {
+    transition: transform 0.4s ease;
+}
+
+/* Glow sweep effect */
+.link-btn::after {
     content: '';
     position: absolute;
     top: 0;
     left: -100%;
-    width: 100%;
+    width: 50%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-    transition: all 0.5s ease;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transform: skewX(-20deg);
+    transition: all 0.6s ease;
 }
 
 .link-btn:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
-.link-btn:hover::before {
-    left: 100%;
+.link-btn:hover::after {
+    left: 150%;
 }
 
-/* Custom Hovers */
+.link-btn:hover i {
+    transform: scale(1.2) rotate(-10deg);
+}
+
+.link-btn:hover span {
+    transform: scale(1.05);
+}
+
+/* Specific button styles */
 .tiktok-btn:hover {
-    background: rgba(255, 0, 80, 0.1);
-    border-color: var(--tiktok-color);
-    box-shadow: 0 10px 20px rgba(255, 0, 80, 0.2), 0 0 15px var(--tiktok-color-2);
+    background: linear-gradient(90deg, rgba(255, 0, 80, 0.15), rgba(0, 242, 254, 0.15));
+    border-color: var(--tiktok-color-2);
+    box-shadow: 0 15px 25px rgba(255, 0, 80, 0.3), 0 0 20px rgba(0, 242, 254, 0.4);
 }
-.tiktok-btn i { color: #fff; text-shadow: 2px 0 var(--tiktok-color), -2px 0 var(--tiktok-color-2); }
+.tiktok-btn:hover i { color: #fff; text-shadow: 3px 0 var(--tiktok-color), -3px 0 var(--tiktok-color-2); }
 
 .youtube-btn:hover {
-    background: rgba(255, 0, 0, 0.1);
+    background: rgba(255, 0, 0, 0.15);
     border-color: var(--youtube-color);
-    box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
+    box-shadow: 0 15px 25px rgba(255, 0, 0, 0.3), 0 0 20px rgba(255, 0, 0, 0.4);
 }
-.youtube-btn i { color: var(--youtube-color); }
+.youtube-btn:hover i { color: var(--youtube-color); text-shadow: 0 0 10px rgba(255,0,0,0.5); }
 
 .whatsapp-btn:hover {
-    background: rgba(37, 211, 102, 0.1);
+    background: rgba(37, 211, 102, 0.15);
     border-color: var(--whatsapp-color);
-    box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+    box-shadow: 0 15px 25px rgba(37, 211, 102, 0.3), 0 0 20px rgba(37, 211, 102, 0.4);
 }
-.whatsapp-btn i { color: var(--whatsapp-color); }
-
+.whatsapp-btn:hover i { color: var(--whatsapp-color); text-shadow: 0 0 10px rgba(37,211,102,0.5); }
 
 footer {
-    margin-top: 3rem;
-    font-size: 0.85rem;
+    margin-top: 3.5rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
+    opacity: 0;
+    animation: fadeIn 1s ease 1.5s forwards;
+    letter-spacing: 2px;
 }
