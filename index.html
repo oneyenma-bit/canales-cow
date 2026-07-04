@@ -35,11 +35,189 @@
                 <i class="fab fa-whatsapp"></i>
                 <span>Grupo de WhatsApp</span>
             </a>
+            
+            <button id="open-quiz-btn" class="link-btn quiz-btn">
+                <i class="fas fa-gamepad"></i>
+                <span>¿Eres un verdadero fan? (QUIZ)</span>
+            </button>
         </main>
         
         <footer>
             <p>&copy; 2026 cowsmall7w7</p>
         </footer>
     </div>
+
+    <!-- Modal del Quiz -->
+    <div id="quiz-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-quiz">&times;</span>
+            <div id="quiz-header">
+                <h2>Cuestionario de Cow 🐷</h2>
+                <p id="question-counter">Pregunta 1 de 5</p>
+            </div>
+            
+            <div id="quiz-body">
+                <h3 id="question-text">¿Pregunta?</h3>
+                <div id="options-container" class="options-container">
+                    <!-- Opciones inyectadas por JS -->
+                </div>
+                <p id="quiz-feedback" class="quiz-feedback"></p>
+                <button id="next-btn" class="next-btn" style="display: none;">Siguiente Pregunta</button>
+            </div>
+
+            <div id="quiz-result" style="display: none;">
+                <h3 id="result-title">¡Terminaste!</h3>
+                <p id="result-text"></p>
+                <button id="restart-btn" class="next-btn">Volver a Jugar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "¿Cuál es el nombre del team de Cow?",
+                options: ["Team Cacao", "Team Cerditos", "Team Cerebros Lisos"],
+                correct: 0,
+                insult: "¡Uy no! ¿Team Cerditos? Te falta ver más mis videos, cerebro liso. 🤦‍♂️"
+            },
+            {
+                question: "¿Cuál es la frase/palabra más usada en los videos de Cow?",
+                options: ["¡Hola chicos!", "Pedazos de estorbo cibernético / Cerebros lisos", "Suscríbanse a mi canal"],
+                correct: 1,
+                insult: "¡Falso! ¿Acaso no me conoces? Eres un pedazo de estorbo cibernético si no sabes esta. 🐷"
+            },
+            {
+                question: "¿De quién se inspiró Cow para su avatar?",
+                options: ["Rodny Roblox", "Mikecrack", "Sonek (el youtuber de Roblox)"],
+                correct: 2,
+                insult: "¡Mal! Ve a preguntarle a Cow o mírate los videos antiguos. ¡Fue de Sonek! 😤"
+            },
+            {
+                question: "¿Cow alguna vez ha regalado cosas en live?",
+                options: ["No, nunca", "¡Sí, claro!", "Solo a sus amigos"],
+                correct: 1,
+                insult: "¡Mentira! Claro que he regalado cosas. ¡Se nota que no entras a los lives, cerebro liso! 🎁"
+            },
+            {
+                question: "Si eres muy antiguo... ¿Cómo empezó Cow a hacer sus videos?",
+                options: ["Haciendo videos de Goku y de amor", "Empezó en los directos (lives)", "Con una cuenta comprada"],
+                correct: 0,
+                insult: "¡Pff novato! Empecé con videos de Goku y de amor en un canal oculto. ¡Te falta calle! 🐉💖"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        const modal = document.getElementById("quiz-modal");
+        const openBtn = document.getElementById("open-quiz-btn");
+        const closeBtn = document.getElementById("close-quiz");
+        
+        const questionText = document.getElementById("question-text");
+        const optionsContainer = document.getElementById("options-container");
+        const feedbackText = document.getElementById("quiz-feedback");
+        const nextBtn = document.getElementById("next-btn");
+        const questionCounter = document.getElementById("question-counter");
+        
+        const quizBody = document.getElementById("quiz-body");
+        const quizResult = document.getElementById("quiz-result");
+        const resultTitle = document.getElementById("result-title");
+        const resultText = document.getElementById("result-text");
+        const restartBtn = document.getElementById("restart-btn");
+
+        // Abrir modal
+        openBtn.onclick = () => {
+            modal.style.display = "flex";
+            startQuiz();
+        }
+
+        // Cerrar modal
+        closeBtn.onclick = () => {
+            modal.style.display = "none";
+        }
+
+        window.onclick = (event) => {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function startQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            quizBody.style.display = "block";
+            quizResult.style.display = "none";
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            feedbackText.style.display = "none";
+            nextBtn.style.display = "none";
+            optionsContainer.innerHTML = "";
+            
+            const q = questions[currentQuestion];
+            questionText.innerText = q.question;
+            questionCounter.innerText = `Pregunta ${currentQuestion + 1} de ${questions.length}`;
+
+            q.options.forEach((opt, index) => {
+                const btn = document.createElement("button");
+                btn.innerText = opt;
+                btn.className = "option-btn";
+                btn.onclick = () => checkAnswer(index, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selectedIndex, btnElement) {
+            // Deshabilitar botones
+            const buttons = optionsContainer.querySelectorAll(".option-btn");
+            buttons.forEach(b => b.disabled = true);
+
+            const q = questions[currentQuestion];
+            feedbackText.style.display = "block";
+
+            if (selectedIndex === q.correct) {
+                btnElement.classList.add("correct");
+                feedbackText.innerText = "¡Correcto! 😎";
+                feedbackText.style.color = "#25D366";
+                score++;
+            } else {
+                btnElement.classList.add("wrong");
+                buttons[q.correct].classList.add("correct");
+                feedbackText.innerText = q.insult;
+                feedbackText.style.color = "#ff0050";
+            }
+
+            nextBtn.style.display = "block";
+        }
+
+        nextBtn.onclick = () => {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quizBody.style.display = "none";
+            quizResult.style.display = "block";
+            
+            if(score === questions.length) {
+                resultTitle.innerText = "¡Eres un Dios! 👑";
+                resultText.innerText = `Acertaste ${score} de ${questions.length}. Eres un verdadero seguidor de Cow, mis respetos.`;
+            } else if (score >= 3) {
+                resultTitle.innerText = "¡Nada mal! 👍";
+                resultText.innerText = `Acertaste ${score} de ${questions.length}. Sabes cositas, pero aún tienes algo de cerebro liso.`;
+            } else {
+                resultTitle.innerText = "¡Qué vergüenza! 🤡";
+                resultText.innerText = `Solo acertaste ${score} de ${questions.length}. ¡Vete a ver mis videos, pedazo de estorbo cibernético!`;
+            }
+        }
+
+        restartBtn.onclick = startQuiz;
+    </script>
 </body>
 </html>

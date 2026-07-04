@@ -264,3 +264,137 @@ footer {
     animation: fadeIn 1s ease 1.5s forwards;
     letter-spacing: 2px;
 }
+
+/* --- QUIZ MODAL STYLES --- */
+.quiz-btn {
+    animation-delay: 1.2s;
+    background: linear-gradient(90deg, rgba(176, 38, 255, 0.15), rgba(38, 208, 255, 0.15));
+    border-color: var(--neon-purple);
+}
+
+.quiz-btn:hover {
+    box-shadow: 0 15px 25px rgba(176, 38, 255, 0.3), 0 0 20px rgba(38, 208, 255, 0.4);
+}
+.quiz-btn:hover i { color: var(--neon-blue); text-shadow: 0 0 10px rgba(38,208,255,0.5); }
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.modal-content {
+    background: #1a153a;
+    border: 2px solid var(--neon-purple);
+    border-radius: 25px;
+    width: 100%;
+    max-width: 500px;
+    padding: 2.5rem;
+    position: relative;
+    box-shadow: 0 0 40px rgba(176, 38, 255, 0.4);
+    text-align: center;
+    animation: popIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-btn:hover {
+    color: var(--neon-pink);
+    transform: scale(1.1);
+}
+
+#quiz-header h2 {
+    color: var(--neon-blue);
+    margin-bottom: 0.5rem;
+}
+
+#question-counter {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+#question-text {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.option-btn {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    padding: 1rem;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.option-btn:hover:not(:disabled) {
+    background: rgba(255,255,255,0.15);
+    border-color: var(--neon-purple);
+}
+
+.option-btn.correct {
+    background: rgba(37, 211, 102, 0.2);
+    border-color: var(--whatsapp-color);
+}
+
+.option-btn.wrong {
+    background: rgba(255, 0, 80, 0.2);
+    border-color: var(--tiktok-color);
+}
+
+.quiz-feedback {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    min-height: 24px;
+}
+
+.next-btn {
+    background: linear-gradient(45deg, var(--neon-purple), var(--neon-blue));
+    color: #fff;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.next-btn:hover {
+    box-shadow: 0 0 20px rgba(38, 208, 255, 0.5);
+    transform: translateY(-3px);
+}
