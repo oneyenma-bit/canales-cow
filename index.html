@@ -3,82 +3,279 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>cowsmall7w7 | Mis Canales</title>
-    <link rel="stylesheet" href="style.css?v=3">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>cowsmall7w7 🐷 | Canales & Servidores Minecraft</title>
+    <!-- Meta Tags -->
+    <meta name="description" content="Página oficial de cowsmall7w7. Canales de TikTok, YouTube y Servidores de Minecraft Bedrock y Java.">
+    <meta name="theme-color" content="#0b0918">
+    
+    <!-- Cache-busting CSS -->
+    <link rel="stylesheet" href="style.css?v=5">
+    <!-- Font Awesome 6.5 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header class="profile-section">
-            <div class="profile-image-container">
-                <img src="Picsart_26-06-26_19-48-46-527.png" alt="cowsmall7w7" class="profile-image">
-            </div>
-            <h1 class="profile-name">@cowsmall7w7</h1>
-            <p class="profile-bio">bienvenidos ami pagina cerebros lisos aqui tienen mis canales y sean bienvenidos a esta locura JKSAJKAJKJA</p>
-        </header>
 
-        <main class="links-section">
-            <a href="https://www.tiktok.com/@cowsmall7w7?_r=1&_t=ZS-97joKmhX9DM" class="link-btn tiktok-btn" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-tiktok"></i>
-                <span>TikTok</span>
-            </a>
-            
-            <a href="https://youtube.com/@cowsmall7w7?si=xIJ8ArF_0Ncqouuj" class="link-btn youtube-btn" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-youtube"></i>
-                <span>YouTube</span>
-            </a>
-
-            <a href="https://chat.whatsapp.com/FmMqa4zCNLD7xJvzD473IJ" class="link-btn whatsapp-btn" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-whatsapp"></i>
-                <span>Comunidad y Server de Bedrock</span>
-            </a>
-
-            <a href="https://chat.whatsapp.com/EdSme4WqdPMIL7geqdqoC5?s=cl&p=a&ilr=0&amv=1" class="link-btn whatsapp-btn" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-whatsapp"></i>
-                <span>Servidor de Java</span>
-            </a>
-            
-            <button id="open-quiz-btn" class="link-btn quiz-btn">
-                <i class="fas fa-gamepad"></i>
-                <span>¿Eres un verdadero fan? (QUIZ)</span>
-            </button>
-        </main>
-        
-        <footer>
-            <p>&copy; 2026 cowsmall7w7</p>
-        </footer>
+    <!-- HTML5 Particle Canvas Background -->
+    <canvas id="particles-canvas"></canvas>
+    
+    <!-- Glowing background elements -->
+    <div class="glow-bg-layer">
+        <div class="neon-blob blob-purple"></div>
+        <div class="neon-blob blob-cyan"></div>
+        <div class="neon-blob blob-pink"></div>
     </div>
 
-    <!-- Modal del Quiz -->
-    <div id="quiz-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" id="close-quiz">&times;</span>
-            <div id="quiz-header">
-                <h2>Cuestionario de Cow 🐷</h2>
-                <p id="question-counter">Pregunta 1 de 5</p>
-            </div>
+    <!-- Main Container -->
+    <div class="app-container">
+        
+        <!-- Hero Card -->
+        <div class="hero-card">
             
-            <div id="quiz-body">
-                <h3 id="question-text">¿Pregunta?</h3>
-                <div id="options-container" class="options-container">
-                    <!-- Opciones inyectadas por JS -->
+            <!-- Banner Header -->
+            <div class="banner-header">
+                <img src="banner.png" alt="Gaming Banner" class="banner-img">
+                <div class="banner-overlay"></div>
+                <div class="live-status-pill">
+                    <span class="live-pulse"></span>
+                    <span>ONLINE • COMUNIDAD ACTIVA</span>
                 </div>
-                <p id="quiz-feedback" class="quiz-feedback"></p>
-                <button id="next-btn" class="next-btn" style="display: none;">Siguiente Pregunta</button>
             </div>
 
-            <div id="quiz-result" style="display: none;">
-                <h3 id="result-title">¡Terminaste!</h3>
-                <p id="result-text"></p>
-                <button id="restart-btn" class="next-btn">Volver a Jugar</button>
+            <!-- Profile Info Section -->
+            <div class="profile-header-content">
+                <div class="avatar-container">
+                    <div class="avatar-glow-ring"></div>
+                    <img src="Picsart_26-06-26_19-48-46-527.png" alt="cowsmall7w7" class="avatar-img">
+                    <div class="verified-icon" title="Verificado">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </div>
+
+                <h1 class="profile-name">
+                    cowsmall7w7 <span class="pig-emoji">🐷</span>
+                </h1>
+                
+                <p class="profile-tagline">@cowsmall7w7 • Creador de Contenido</p>
+
+                <!-- Feature Badges -->
+                <div class="badges-row">
+                    <span class="badge-item badge-minecraft"><i class="fas fa-cube"></i> Minecraft</span>
+                    <span class="badge-item badge-tiktok"><i class="fab fa-tiktok"></i> TikTok</span>
+                    <span class="badge-item badge-youtube"><i class="fab fa-youtube"></i> YouTube</span>
+                    <span class="badge-item badge-team"><i class="fas fa-crown"></i> Team Cacao</span>
+                </div>
+
+                <!-- Bio Quote Box -->
+                <div class="bio-card">
+                    <i class="fas fa-quote-left quote-icon"></i>
+                    <p>Bienvenidos a mi página cerebros lisos, aquí tienen mis canales y sean bienvenidos a esta locura JKSAJKAJKJA 🐷🔥</p>
+                </div>
+            </div>
+
+            <!-- Links Grid / Sections -->
+            <div class="sections-wrapper">
+
+                <!-- SECTION 1: REDES SOCIALES -->
+                <div class="section-block">
+                    <div class="section-title">
+                        <i class="fas fa-share-nodes"></i>
+                        <span>REDES SOCIALES</span>
+                    </div>
+
+                    <div class="links-list">
+                        <!-- TikTok -->
+                        <a href="https://www.tiktok.com/@cowsmall7w7?_r=1&_t=ZS-97joKmhX9DM" class="btn-card card-tiktok" target="_blank" rel="noopener noreferrer">
+                            <div class="btn-icon-wrapper">
+                                <i class="fab fa-tiktok"></i>
+                            </div>
+                            <div class="btn-content">
+                                <div class="btn-heading">TikTok</div>
+                                <div class="btn-subtext">@cowsmall7w7 • Videos & Directos</div>
+                            </div>
+                            <div class="btn-badge-pill pill-tiktok">VER CANAL</div>
+                            <i class="fas fa-chevron-right arrow-icon"></i>
+                        </a>
+
+                        <!-- YouTube -->
+                        <a href="https://youtube.com/@cowsmall7w7?si=xIJ8ArF_0Ncqouuj" class="btn-card card-youtube" target="_blank" rel="noopener noreferrer">
+                            <div class="btn-icon-wrapper">
+                                <i class="fab fa-youtube"></i>
+                            </div>
+                            <div class="btn-content">
+                                <div class="btn-heading">YouTube</div>
+                                <div class="btn-subtext">@cowsmall7w7 • Canal de Videos</div>
+                            </div>
+                            <div class="btn-badge-pill pill-youtube">SUSCRIBIRSE</div>
+                            <i class="fas fa-chevron-right arrow-icon"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- SECTION 2: SERVIDORES MINECRAFT -->
+                <div class="section-block">
+                    <div class="section-title">
+                        <i class="fas fa-cubes-stacked"></i>
+                        <span>SERVIDORES DE MINECRAFT & WHATSAPP</span>
+                    </div>
+
+                    <div class="links-list">
+                        <!-- Bedrock -->
+                        <a href="https://chat.whatsapp.com/FmMqa4zCNLD7xJvzD473IJ" class="btn-card card-bedrock" target="_blank" rel="noopener noreferrer">
+                            <div class="btn-icon-wrapper">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="btn-content">
+                                <div class="btn-heading">Comunidad & Server Bedrock</div>
+                                <div class="btn-subtext">Grupo de WhatsApp • Minecraft Bedrock</div>
+                            </div>
+                            <div class="btn-badge-pill pill-bedrock">BEDROCK</div>
+                            <i class="fas fa-chevron-right arrow-icon"></i>
+                        </a>
+
+                        <!-- Java -->
+                        <a href="https://chat.whatsapp.com/EdSme4WqdPMIL7geqdqoC5?s=cl&p=a&ilr=0&amv=1" class="btn-card card-java" target="_blank" rel="noopener noreferrer">
+                            <div class="btn-icon-wrapper">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="btn-content">
+                                <div class="btn-heading">Servidor de Java</div>
+                                <div class="btn-subtext">Grupo de WhatsApp • Minecraft Java</div>
+                            </div>
+                            <div class="btn-badge-pill pill-java">JAVA</div>
+                            <i class="fas fa-chevron-right arrow-icon"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- SECTION 3: DESAFÍO COMUNIDAD -->
+                <div class="section-block">
+                    <div class="section-title">
+                        <i class="fas fa-trophy"></i>
+                        <span>MINIJUEGO INTERACTIVO</span>
+                    </div>
+
+                    <button id="open-quiz-btn" class="btn-card card-quiz">
+                        <div class="btn-icon-wrapper">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="btn-content">
+                            <div class="btn-heading">¿Eres un verdadero fan?</div>
+                            <div class="btn-subtext">Responde el Quiz oficial (5 preguntas)</div>
+                        </div>
+                        <div class="btn-badge-pill pill-quiz">🎮 JUGAR</div>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <footer class="main-footer">
+                <p>&copy; 2026 <strong>cowsmall7w7</strong> • Todos los derechos reservados</p>
+                <p class="footer-sub">Team Cacao 🐷</p>
+            </footer>
+
+        </div>
+    </div>
+
+    <!-- Quiz Modal -->
+    <div id="quiz-modal" class="quiz-modal-overlay">
+        <div class="quiz-modal-box">
+            <button id="close-quiz" class="quiz-close-btn">&times;</button>
+
+            <div class="quiz-top-bar">
+                <div class="quiz-header-title">
+                    <i class="fas fa-crown"></i> Cuestionario de Cow 🐷
+                </div>
+                <div class="progress-track">
+                    <div id="quiz-progress-fill" class="progress-fill" style="width: 20%;"></div>
+                </div>
+                <div id="question-counter" class="counter-label">Pregunta 1 de 5</div>
+            </div>
+
+            <div id="quiz-body" class="quiz-main-body">
+                <h3 id="question-text" class="quiz-question-title">¿Pregunta?</h3>
+                <div id="options-container" class="quiz-options-wrapper"></div>
+                <div id="quiz-feedback" class="quiz-feedback-box"></div>
+                <button id="next-btn" class="quiz-action-btn" style="display: none;">
+                    Siguiente Pregunta <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div id="quiz-result" class="quiz-result-box" style="display: none;">
+                <div id="result-icon-display" class="result-big-emoji">👑</div>
+                <h3 id="result-title" class="result-header-text">¡Terminaste!</h3>
+                <p id="result-text" class="result-body-text"></p>
+                <button id="restart-btn" class="quiz-action-btn">
+                    <i class="fas fa-rotate-right"></i> Volver a Jugar
+                </button>
             </div>
         </div>
     </div>
 
+    <!-- JS Logic -->
     <script>
+        // HTML5 Canvas Particles Animation
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedY = -(Math.random() * 0.8 + 0.3);
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random() * 0.6 + 0.2;
+                this.color = Math.random() > 0.5 ? '#b026ff' : '#00f2fe';
+            }
+            update() {
+                this.y += this.speedY;
+                this.x += this.speedX;
+                if (this.y < -10) this.reset();
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.fillStyle = this.color;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 45; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // Quiz Logic
         const questions = [
             {
                 question: "¿Cuál es el nombre del team de Cow?",
@@ -118,34 +315,30 @@
         const modal = document.getElementById("quiz-modal");
         const openBtn = document.getElementById("open-quiz-btn");
         const closeBtn = document.getElementById("close-quiz");
-        
         const questionText = document.getElementById("question-text");
         const optionsContainer = document.getElementById("options-container");
         const feedbackText = document.getElementById("quiz-feedback");
         const nextBtn = document.getElementById("next-btn");
         const questionCounter = document.getElementById("question-counter");
-        
+        const progressBar = document.getElementById("quiz-progress-fill");
         const quizBody = document.getElementById("quiz-body");
         const quizResult = document.getElementById("quiz-result");
         const resultTitle = document.getElementById("result-title");
         const resultText = document.getElementById("result-text");
+        const resultIconDisplay = document.getElementById("result-icon-display");
         const restartBtn = document.getElementById("restart-btn");
 
-        // Abrir modal
         openBtn.onclick = () => {
-            modal.style.display = "flex";
+            modal.classList.add("active");
             startQuiz();
         }
 
-        // Cerrar modal
         closeBtn.onclick = () => {
-            modal.style.display = "none";
+            modal.classList.remove("active");
         }
 
-        window.onclick = (event) => {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
+        window.onclick = (e) => {
+            if (e.target === modal) modal.classList.remove("active");
         }
 
         function startQuiz() {
@@ -158,6 +351,7 @@
 
         function loadQuestion() {
             feedbackText.style.display = "none";
+            feedbackText.className = "quiz-feedback-box";
             nextBtn.style.display = "none";
             optionsContainer.innerHTML = "";
             
@@ -165,18 +359,20 @@
             questionText.innerText = q.question;
             questionCounter.innerText = `Pregunta ${currentQuestion + 1} de ${questions.length}`;
 
+            const percent = ((currentQuestion + 1) / questions.length) * 100;
+            progressBar.style.width = `${percent}%`;
+
             q.options.forEach((opt, index) => {
                 const btn = document.createElement("button");
-                btn.innerText = opt;
-                btn.className = "option-btn";
+                btn.className = "quiz-opt-btn";
+                btn.innerHTML = `<span class="opt-num">${index + 1}</span> <span class="opt-txt">${opt}</span>`;
                 btn.onclick = () => checkAnswer(index, btn);
                 optionsContainer.appendChild(btn);
             });
         }
 
         function checkAnswer(selectedIndex, btnElement) {
-            // Deshabilitar botones
-            const buttons = optionsContainer.querySelectorAll(".option-btn");
+            const buttons = optionsContainer.querySelectorAll(".quiz-opt-btn");
             buttons.forEach(b => b.disabled = true);
 
             const q = questions[currentQuestion];
@@ -184,17 +380,17 @@
 
             if (selectedIndex === q.correct) {
                 btnElement.classList.add("correct");
-                feedbackText.innerText = "¡Correcto! 😎";
-                feedbackText.style.color = "#25D366";
+                feedbackText.innerText = "¡Correcto! 😎✨";
+                feedbackText.classList.add("fb-correct");
                 score++;
             } else {
                 btnElement.classList.add("wrong");
                 buttons[q.correct].classList.add("correct");
                 feedbackText.innerText = q.insult;
-                feedbackText.style.color = "#ff0050";
+                feedbackText.classList.add("fb-wrong");
             }
 
-            nextBtn.style.display = "block";
+            nextBtn.style.display = "inline-flex";
         }
 
         nextBtn.onclick = () => {
@@ -209,14 +405,19 @@
         function showResults() {
             quizBody.style.display = "none";
             quizResult.style.display = "block";
+            progressBar.style.width = "100%";
+            questionCounter.innerText = "¡Completado!";
             
             if(score === questions.length) {
+                resultIconDisplay.innerText = "👑";
                 resultTitle.innerText = "¡Eres un Dios! 👑";
                 resultText.innerText = `Acertaste ${score} de ${questions.length}. Eres un verdadero seguidor de Cow, mis respetos.`;
             } else if (score >= 3) {
+                resultIconDisplay.innerText = "👍";
                 resultTitle.innerText = "¡Nada mal! 👍";
                 resultText.innerText = `Acertaste ${score} de ${questions.length}. Sabes cositas, pero aún tienes algo de cerebro liso.`;
             } else {
+                resultIconDisplay.innerText = "🤡";
                 resultTitle.innerText = "¡Qué vergüenza! 🤡";
                 resultText.innerText = `Solo acertaste ${score} de ${questions.length}. ¡Vete a ver mis videos, pedazo de estorbo cibernético!`;
             }
